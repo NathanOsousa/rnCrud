@@ -1,45 +1,47 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import UserList from './View/UserList';
 import UserForm from './View/UserForm';
-// import { Container } from './styles';
+import { UsersProvider } from './contexts/userContext';
 
 const Stack = createStackNavigator();
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="UserList"
-        screenOptions={screenOptions}>
-        <Stack.Screen
-          name="UserList"
-          component={UserList}
-          options={({ navigation }) => {
-            return {
-              title: 'Users',
-              headerRight: () => (
-                <View style={{ height: 50, width: 100 }}>
-                  <Button
-                    title="Bigodinho"
-                    onPress={() => navigation.navigate('UserForm')}
-                  />
-                </View>
-              ),
-            };
-          }}
-        />
+    <UsersProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="UserList"
+          screenOptions={screenOptions}>
+          <Stack.Screen
+            name="UserList"
+            component={UserList}
+            options={({ navigation }) => {
+              return {
+                title: 'Users',
+                headerRight: () => (
+                  <View style={{ height: 50, width: 100 }}>
+                    <Button
+                      title="X"
+                      onPress={() => navigation.navigate('UserForm')}
+                    />
+                  </View>
+                ),
+              };
+            }}
+          />
 
-        <Stack.Screen
-          name="UserForm"
-          component={UserForm}
-          options={{
-            title: 'Register User',
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="UserForm"
+            component={UserForm}
+            options={{
+              title: 'Register User',
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UsersProvider>
   );
 };
 

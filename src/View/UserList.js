@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, FlatList, Alert } from 'react-native'
-import users from '../data/users'
 import { ListItem, Avatar, Button, Icon } from 'react-native-elements'
 import style from './stylesList'
+import UserContexts from '../contexts/userContext'
 
 const UserList = (props) => {
-  // console.log("🚀 ~ file: UserList.js ~ line 8 ~ UserList ~ props", props.params)
+  const { state } = useContext(UserContexts)
+
   const confirmDeletUser = (user) => {
     Alert.alert(
       `Tem certeza que quer excluir ${user.name}?`, '',
@@ -51,7 +52,7 @@ const UserList = (props) => {
   return (
     <View style={style.container}>
       <FlatList
-        data={users}
+        data={state.users}
         keyExtractor={(item) => item.id}
         renderItem={renderItens}
       />
