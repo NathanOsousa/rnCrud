@@ -5,7 +5,7 @@ import style from './stylesList'
 import UserContexts from '../contexts/userContext'
 
 const UserList = (props) => {
-  const { state } = useContext(UserContexts)
+  const { state, dispatch } = useContext(UserContexts)
 
   const confirmDeletUser = (user) => {
     Alert.alert(
@@ -13,7 +13,12 @@ const UserList = (props) => {
       [
         {
           text: 'sim',
-          onPress: () => console.log('excluir usuário'),
+          onPress: () => {
+            dispatch({
+              type: 'deleteUser',
+              payload: user
+            })
+          },
         },
         {
           text: 'Não',
