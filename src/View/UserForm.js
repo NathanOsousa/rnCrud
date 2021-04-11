@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
+import UserContexts from '../contexts/userContext'
+
 
 const UserForm = ({ route, navigation }) => {
   const [user, setUser] = useState(route.params ? route.params : {})
+  const { dispatch } = useContext(UserContexts)
 
+  const handleNewUser = () => {
+    dispatch({
+      type: user.id ? 'updateUser' : 'createUser',
+      payload: user
+    })
+    navigation.goBack()
+  }
 
   return (
     <View style={styles.container}>
@@ -12,6 +22,7 @@ const UserForm = ({ route, navigation }) => {
         placeholder="Insira o nome"
         style={styles.textInput}
         onChangeText={(name) => setUser({ ...user, name })}
+        value={user.name}
       />
 
       <Text>Email</Text>
@@ -19,6 +30,7 @@ const UserForm = ({ route, navigation }) => {
         placeholder="Insira o email"
         style={styles.textInput}
         onChangeText={(email) => setUser({ ...user, email })}
+        value={user.email}
       />
 
       <Text>URL do avatar</Text>
@@ -26,10 +38,11 @@ const UserForm = ({ route, navigation }) => {
         placeholder="Insira URL do avatar"
         style={styles.textInput}
         onChangeText={(avatar) => setUser({ ...user, avatar })}
+        value={user.avatar}
       />
 
 
-      <Button title="Salvar" onPress={() => navigation.goBack()} />
+      <Button title="Salvar" onPress={() => handleNewUser()} />
     </View>
   )
 }

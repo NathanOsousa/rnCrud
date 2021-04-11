@@ -23,7 +23,7 @@ const App = () => {
                 headerRight: () => (
                   <View style={{ height: 50, width: 100 }}>
                     <Button
-                      title="X"
+                      title="+"
                       onPress={() => navigation.navigate('UserForm')}
                     />
                   </View>

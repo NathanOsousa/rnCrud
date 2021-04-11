@@ -12,6 +12,10 @@ const UserList = (props) => {
       `Tem certeza que quer excluir ${user.name}?`, '',
       [
         {
+          text: 'Não',
+          onPress: () => console.log('não vou excluir usuário'),
+        },
+        {
           text: 'sim',
           onPress: () => {
             dispatch({
@@ -20,10 +24,6 @@ const UserList = (props) => {
             })
           },
         },
-        {
-          text: 'Não',
-          onPress: () => console.log('não vou excluir usuário'),
-        }
       ]
     )
   }
