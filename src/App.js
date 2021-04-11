@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {View, Button} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import UserList from './View/UserList';
 import UserForm from './View/UserForm';
-import { UsersProvider } from './contexts/userContext';
+import {UsersProvider} from './contexts/userContext';
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -17,11 +17,11 @@ const App = () => {
           <Stack.Screen
             name="UserList"
             component={UserList}
-            options={({ navigation }) => {
+            options={({navigation}) => {
               return {
                 title: 'Users',
                 headerRight: () => (
-                  <View style={{ height: 50, width: 100 }}>
+                  <View style={{height: 50, width: 100}}>
                     <Button
                       title="+"
                       onPress={() => navigation.navigate('UserForm')}
@@ -47,11 +47,11 @@ const App = () => {
 
 const screenOptions = {
   headerStyle: {
-    backgroundColor: '#f4511e'
+    backgroundColor: '#f4511e',
   },
   headerTintColor: '#fff',
   headerTitleStyle: {
     // fontWeight: 'bold'
-  }
-}
+  },
+};
 export default App;

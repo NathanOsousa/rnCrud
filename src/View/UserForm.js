@@ -1,19 +1,18 @@
-import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
-import UserContexts from '../contexts/userContext'
+import React, {useState, useContext} from 'react';
+import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
+import UserContexts from '../contexts/userContext';
 
-
-const UserForm = ({ route, navigation }) => {
-  const [user, setUser] = useState(route.params ? route.params : {})
-  const { dispatch } = useContext(UserContexts)
+const UserForm = ({route, navigation}) => {
+  const [user, setUser] = useState(route.params ? route.params : {});
+  const {dispatch} = useContext(UserContexts);
 
   const handleNewUser = () => {
     dispatch({
       type: user.id ? 'updateUser' : 'createUser',
-      payload: user
-    })
-    navigation.goBack()
-  }
+      payload: user,
+    });
+    navigation.goBack();
+  };
 
   return (
     <View style={styles.container}>
@@ -21,7 +20,7 @@ const UserForm = ({ route, navigation }) => {
       <TextInput
         placeholder="Insira o nome"
         style={styles.textInput}
-        onChangeText={(name) => setUser({ ...user, name })}
+        onChangeText={name => setUser({...user, name})}
         value={user.name}
       />
 
@@ -29,7 +28,7 @@ const UserForm = ({ route, navigation }) => {
       <TextInput
         placeholder="Insira o email"
         style={styles.textInput}
-        onChangeText={(email) => setUser({ ...user, email })}
+        onChangeText={email => setUser({...user, email})}
         value={user.email}
       />
 
@@ -37,24 +36,23 @@ const UserForm = ({ route, navigation }) => {
       <TextInput
         placeholder="Insira URL do avatar"
         style={styles.textInput}
-        onChangeText={(avatar) => setUser({ ...user, avatar })}
+        onChangeText={avatar => setUser({...user, avatar})}
         value={user.avatar}
       />
 
-
       <Button title="Salvar" onPress={() => handleNewUser()} />
     </View>
-  )
-}
+  );
+};
 const styles = StyleSheet.create({
   container: {
-    padding: 12
+    padding: 12,
   },
   textInput: {
     borderWidth: 1,
     borderColor: 'black',
-    marginBottom: 30
-  }
-})
+    marginBottom: 30,
+  },
+});
 
 export default UserForm;
